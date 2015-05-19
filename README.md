@@ -2,8 +2,6 @@
 
 Middleware server
 
-<!-- [![build status](https://secure.travis-ci.org/yieme/middle-server.png)](http://travis-ci.org/yieme/middle-server) -->
-
 ## Installation
 
 This module is installed via npm:
@@ -32,10 +30,7 @@ var options = {
 	pre:        [consoleLog, ignoreFavicon], // middleware to process before primary middleware
 	middleware: function(req,res,next) { },  // default primary middleware override
 	post:       [],                          // middleware to process after primary middleware
-	express:    require('express'),          // override express instance
-	app:        require('express')(),        // override application instance
   port:       process.env.port || 3000,    // override the default port
-	pkg:        require('./package.json'),   // override the package details
 	logger:     yourWinstonInstance,         // override logger, default console supports: debug, info, warn, error, log
 }
 var app = require('middle-server')(options) // returns instance to the running application server
