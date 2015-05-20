@@ -26,7 +26,7 @@ function middleServer(options) {
   if (options.port)   port   = options.port
 
   function consoleLog(req, res, next) {
-    logger.info(req.url)
+    req.app.locals._log.info(req.url)
     next()
   }
 
@@ -53,6 +53,7 @@ function middleServer(options) {
   }
   var appName = pack.name + '@' + pack.version
 
+  app.locals._log = logger
   app.listen(port)
   logger.info(appName + ' listening on ' + port)
   return app
