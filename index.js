@@ -7,7 +7,7 @@
 var fs = require('fs')
 var express     = require('express')
 var app         = express()
-var port        = process.env.port || 3000
+var port        = process.env.PORT || 5000
 var path        = require('path')
 var pkgPath     = path.normalize(process.cwd() + '/package.json')
 var pack        = JSON.parse(fs.readFileSync(pkgPath, 'utf8'))
