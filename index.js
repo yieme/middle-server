@@ -19,21 +19,21 @@ var logger      = {
   log:   console.log,
 }
 
+function consoleLog(req, res, next) {
+  req.app.locals._log.info(req.url)
+  next()
+}
+
+function ignoreFavicon(req, res, next) {
+  if (req.url == '/favicon.ico') return res.status(404) // ignore favicon
+  next()
+}
+
 function middleServer(options) {
   if ('function' === typeof options) options = { middleware: options }
   options                    = options || {}
   if (options.logger) logger = options.logger
   if (options.port)   port   = options.port
-
-  function consoleLog(req, res, next) {
-    req.app.locals._log.info(req.url)
-    next()
-  }
-
-  function ignoreFavicon(req, res, next) {
-    if (req.url == '/favicon.ico') return res.status(404) // ignore favicon
-    next()
-  }
 
   options.pre        = options.pre        || [ consoleLog, ignoreFavicon ]
   options.middleware = options.middleware || require('readme-middleware')
