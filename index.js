@@ -64,3 +64,4 @@ module.exports               = middleServer
 module.exports.log           = consoleLog
 module.exports.ignoreFavicon = ignoreFavicon
 module.exports.readme        = readmeMiddleware
+module.exports.static        = express.static
