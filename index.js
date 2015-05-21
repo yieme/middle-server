@@ -35,11 +35,7 @@ function middleServer(options) {
     next()
   }
 
-  options.pre        = options.pre        || []
-  if (options.pre.length == 0) {
-    options.pre.push(consoleLog)
-    options.pre.push(ignoreFavicon)
-  }
+  options.pre        = options.pre        || [ consoleLog, ignoreFavicon ]
   options.middleware = options.middleware || require('readme-middleware')
   options.post       = options.post       || []
 
@@ -60,5 +56,11 @@ function middleServer(options) {
 }
 
 
+function readmeMiddleware() {
+  return require('readme-middleware')
+}
 
-module.exports = middleServer
+module.exports               = middleServer
+module.exports.log           = consoleLog
+module.exports.ignoreFavicon = ignoreFavicon
+module.exports.readme        = readmeMiddleware
