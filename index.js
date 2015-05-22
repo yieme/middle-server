@@ -20,7 +20,7 @@ var logger      = {
 }
 
 function consoleLog(req, res, next) {
-  req.app.locals._log.info(req.url)
+  req.app.locals._log.info(req.method.toUpperCase() + ' ' + req.url)
   next()
 }
 
